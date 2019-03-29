@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>还款计算详情</title>
+</head>
+<body>
+
+<form action="/huankuan" method="post">
+    <h1>分子贷输入本金，借款利率（年化），借款期限，罚息日利率，返回还款总金额、罚息、利息</h1>
+    <p><input name="jiekuanbenjin" type="value">（元）借款本金</p>
+    <p><input name="jiekuanlilv" type="value">（%年化利率）借款利率</p>
+    <p><input name="jiekuanqixian" type="value">（天） 借款期限</p>
+    <p><input name="yuqitianshu" type="value">（天） 逾期天数</p>
+    <p><input name="faxirililv" type="value">（%） 罚息日利率</p>
+    <p><input name="fuwufeilv" type="value">（%） 服务费率一次性提前收取</p>
+    <p><button type="submit">Sign In </button></p>
+    </form>
+
+</body>
+</html>
