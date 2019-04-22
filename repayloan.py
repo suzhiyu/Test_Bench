@@ -4,6 +4,8 @@ from flask import Flask
 from flask import request
 from flask import render_template
 import random
+import math
+from suanfa import huankuanjisuan
 
 
 app = Flask(__name__)
@@ -44,7 +46,7 @@ def jisuan():
     parame=request.form.to_dict
 
     jiekuanbenjin=int(request.form['jiekuanbenjin'])
-    jiekuanlilv=int(request.form['jiekuanlilv'])
+    jiekuanlilv=float(request.form['jiekuanlilv'])
     jiekuanqixian=int(request.form['jiekuanqixian'])
     faxirililv=int(request.form['faxirililv'])
     yuqitianshu=int(request.form['yuqitianshu'])
@@ -92,6 +94,55 @@ def jisuan():
             'message': 'invalid expression',
             'data': parame['expression']
         })
+
+
+# parame = request.form.to_dict
+@app.route('/huankuanjisuan', methods=['POST'])
+def fangfajisuan():
+    loanamount = int(request.form['loanamount'])
+    print('++++++', loanamount)
+    rate = float(request.form['rate'])
+    print(rate)
+    periods = int(request.form['periods'])
+    print(periods)
+    gongshi = str(request.form['gongshi'])
+    print(gongshi)
+
+    if gongshi == 'dengebenxi':
+        meiqihuankuane =huankuanjisuan.dengebenxi(loanamount, rate, periods)["meiqihuankuane"]
+        huankuanzonge=huankuanjisuan.dengebenxi(loanamount, rate, periods)["huankuanzonge"]
+        return render_template('suanfajieguo.html',meiqihuankuane=meiqihuankuane,huankuanzonge=huankuanzonge,loanamount=loanamount,rate=rate,periods=periods,gongshi=gongshi)
+    elif gongshi == 'dengbendengxi':
+        meiqihuankuane=huankuanjisuan.dengbendengxi(loanamount,rate,periods)["meiqihuankuane"]
+        huankuanzonge=huankuanjisuan.dengbendengxi(loanamount,rate,periods)["huankuanzonge"]
+        return render_template('suanfajieguo.html',meiqihuankuane=meiqihuankuane,huankuanzonge=huankuanzonge,loanamount=loanamount,rate=rate,periods=periods,gongshi=gongshi)
+    else:
+        return '<h3>Bad requests算法输入错误，请重新输入</h3>'
+
+
+
+
+    if 'expression' not in parame:
+        return jsonify({
+            'status': 400,
+            'message': 'miss parameter [expression]',
+            'data': parame
+        })
+    try:
+        result = eval(parame['expression'])
+
+        return jsonify({
+            'status': 0,
+            'message': 'success',
+            'data': result
+        })
+    except SyntaxError:
+        return jsonify({
+            'status': 500,
+            'message': 'invalid expression',
+            'data': parame['expression']
+        })
+
 
 
 class MyException(Exception):

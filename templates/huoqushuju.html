@@ -15,7 +15,32 @@
     <p><input name="faxirililv" type="value">（%） 罚息日利率</p>
     <p><input name="fuwufeilv" type="value">（%） 服务费率一次性提前收取</p>
     <p><button type="submit">Sign In </button></p>
+
+
+
+
     </form>
+
+<form action="/huankuanjisuan" method="post">
+
+    <h1>等额本息计算和等本等息计算</h1>
+    <p><input name="loanamount" type="value">（元）借款本金</p>
+    <p><input name="rate" type="value">（%年化利率）借款利率</p>
+    <p><input name="periods" type="value">（月） 借款期限</p>
+    <select name="gongshi"  >
+    <option value="dengebenxi">等额本息</option>
+    <option value="dengbendengxi">等本等息</option>
+    </select>
+    <label>计算方法</label>
+
+    <p><button type="submit">Sign In </button></p>
+
+</form>
+
+
+
+
+
 
 </body>
 </html>
