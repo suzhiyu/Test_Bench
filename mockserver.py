@@ -31,12 +31,27 @@ app.config['JSON_AS_ASCII'] = False
 # 		"status": "000000"
 # 	}
 # }
+response={
+ 	"body": {
+ 		"code": "200",
+ 		"data": {
+ 			"extend": "-1",
+ 			"tags": "md000"
+ 		},
+ 		"requestId": "9DA1960B-4D3D-4D73-B70C-C2D0B5A242DE",
+ 		"message": "OK"
+ 	},
+ 	"message": {
+ 		"desc": "成功",
+ 		"status": "000000"
+ 	}
+ }
 
 
 @app.route("/mockserver",methods=["GET","POST"])
 def api_call_back():
 	if request.method=='GET':
-		return jsonify("test_data")
+		return jsonify("response")
 	else:
 		#get_json 直接转化为json
 		#get_data 获取出来的是对象 需要做json 转化           json_data=json.loads(test_data)
