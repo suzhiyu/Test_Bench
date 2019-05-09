@@ -67,7 +67,7 @@ def api_call_back():
 	}
 
 	if request.method=='GET':
-		return jsonify("response")
+		return jsonify(response)
 	else:
 		#get_json 直接转化为json
 		#get_data 获取出来的是对象 需要做json 转化           json_data=json.loads(test_data)
@@ -83,6 +83,6 @@ def api_call_back():
 
 if __name__ == "__main__":
 	#运行flask 指定ip 端口
-	app.run(host="192.168.37.107",
+	app.run(host="192.168.37.25",
 			port=8989,
-			debug=False)
+			debug=True)
