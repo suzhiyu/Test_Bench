@@ -83,6 +83,6 @@ def api_call_back():
 
 if __name__ == "__main__":
 	#运行flask 指定ip 端口
-	app.run(host="192.168.37.25",
+	app.run(host="192.168.37.107",
 			port=8989,
 			debug=False)
