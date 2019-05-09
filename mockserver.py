@@ -31,25 +31,41 @@ app.config['JSON_AS_ASCII'] = False
 # 		"status": "000000"
 # 	}
 # }
-response={
- 	"body": {
- 		"code": "200",
- 		"data": {
- 			"extend": "-1",
- 			"tags": "md000"
- 		},
- 		"requestId": "9DA1960B-4D3D-4D73-B70C-C2D0B5A242DE",
- 		"message": "OK"
- 	},
- 	"message": {
- 		"desc": "成功",
- 		"status": "000000"
- 	}
- }
+# response={
+#  	"body": {
+#  		"code": "200",
+#  		"data": {
+#  			"extend": "-1",
+#  			"tags": "md000"
+#  		},
+#  		"requestId": "9DA1960B-4D3D-4D73-B70C-C2D0B5A242DE",
+#  		"message": "OK"
+#  	},
+#  	"message": {
+#  		"desc": "成功",
+#  		"status": "000000"
+#  	}
+#  }
 
 
 @app.route("/mockserver",methods=["GET","POST"])
 def api_call_back():
+	response = {
+		"body": {
+			"code": "200",
+			"data": {
+				"extend": "-1",
+				"tags": "md000"
+			},
+			"requestId": "9DA1960B-4D3D-4D73-B70C-C2D0B5A242DE",
+			"message": "OK"
+		},
+		"message": {
+			"desc": "成功",
+			"status": "000000"
+		}
+	}
+
 	if request.method=='GET':
 		return jsonify("response")
 	else:
@@ -67,6 +83,6 @@ def api_call_back():
 
 if __name__ == "__main__":
 	#运行flask 指定ip 端口
-	app.run(host="192.168.37.107",
+	app.run(host="192.168.37.25",
 			port=8989,
 			debug=True)
