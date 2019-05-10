@@ -154,4 +154,4 @@ class MyException(Exception):
 if __name__ == '__main__':
     app.run(host='192.168.37.105',
             port='9001',
-            debug=Fasle)
+            debug=False)
